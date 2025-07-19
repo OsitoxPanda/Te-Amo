@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Para Mi Amorcito 💖</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #000;
+      color: #fff;
+      font-family: 'Comic Sans MS', cursive;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: relative;
+    }
+
+    .contenedor-principal {
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .mensaje-principal {
+      font-size: 2.8em;
+      color: #fff;
+      text-align: center;
+      padding: 30px;
+      border-radius: 20px;
+      background: rgba(0, 0, 0, 0.4);
+      text-shadow: 0 0 10px #f0f, 0 0 20px #f0f, 0 0 30px #0ff;
+      box-shadow: 0 0 25px #f0f;
+      max-width: 90%;
+      backdrop-filter: blur(4px);
+    }
+
+    .carrusel {
+      display: flex;
+      justify-content: center;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 15px;
+      padding: 10px;
+      scrollbar-width: none;
+    }
+
+    .carrusel::-webkit-scrollbar {
+      display: none;
+    }
+
+    .carrusel img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 15px;
+      border: 2px solid #f0f;
+      box-shadow: 0 0 15px #f0f;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .carrusel img:hover {
+      transform: scale(1.1);
+    }
+
+    .rain-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .drop {
+      position: absolute;
+      white-space: nowrap;
+      opacity: 0.2;
+      font-size: 1em;
+      animation: fall linear infinite;
+      color: #0ff;
+      text-shadow: 0 0 5px #0ff, 0 0 10px #0ff;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-100%);
+      }
+      100% {
+        transform: translateY(110vh);
+      }
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: hotpink;
+      transform: rotate(45deg);
+      animation: float 4s ease-in-out infinite;
+      z-index: 8;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: hotpink;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-200px) rotate(45deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🌧️ Lluvia -->
+  <div class="rain-container" id="rain"></div>
+
+  <!-- 💕 Contenido principal -->
+  <div class="contenedor-principal">
+    <div class="mensaje-principal">
+      TE AMO MUCHO CORAZON, DESCANSA MI PANDITA HERMOSO, TE AMOOOOoOOooOOoOo 💖✨
+    </div>
+
+    <div class="carrusel">
+      <img src="https://i.ibb.co/8CjpQts/2c077b7d8fdbad9098db1e0b81c823ff.jpg">
+      <img src="https://i.ibb.co/ymyby02g/556daccf14c175302016bf8afa82402d.jpg">
+      <img src="https://i.ibb.co/5hqyy6xm/58a7fead14488524c41cebeef71642c6.jpg">
+    </div>
+  </div>
+
+  <!-- 💖 Script -->
+  <script>
+    const mensaje = "Te Amo BBCITO 🐼💘"; // mensaje que llueve
+    const rainContainer = document.getElementById('rain');
+
+    for (let i = 0; i < 100; i++) {
+      const drop = document.createElement('div');
+      drop.className = 'drop';
+      drop.innerText = mensaje;
+      drop.style.left = Math.random() * 100 + 'vw';
+      drop.style.animationDuration = (2 + Math.random() * 3) + 's';
+      drop.style.fontSize = (12 + Math.random() * 14) + 'px';
+      rainContainer.appendChild(drop);
+    }
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.top = Math.random() * 100 + 'vh';
+      heart.style.animationDuration = (3 + Math.random() * 3) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 4000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
+</body>
+</html>
